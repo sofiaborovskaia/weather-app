@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    
+    <title>Weather</title>
+</head>
+<body>
+
+ <div class="weather-box">
+
+    <div class="location">
+        <h1 class="location-timezone" id="city-name"></h1>
+    </div>
+
+    <div class="temperature">
+        <div class="degree-section">
+        <h2 class="temperature-degree"></h2>
+        <span>°C</span>
+    </div>
+        <div class="temperature-description"></div>
+    </div>
+
+
+         <!-- ICONS -->
+       <div class="icon-wrapper">
+
+            <div class="clear-sky icon">
+                <img src="/assets/clear-sky.gif" frameBorder="0"></img>
+            </div>
+            <div class="few-clouds icon">
+                <img src="/assets/few-clouds.gif" ></img>
+            </div>
+            <div class="overcast-clouds icon">
+                <img src="/assets/overcast-clouds.gif" ></img>
+            </div>
+            <div class="scattered-clouds icon">
+                <img src="/assets/scattered-clouds.gif" ></img>
+            </div>
+            <div class="broken-clouds icon">
+                <img src="/assets/broken-clouds.gif" ></img>
+            </div>
+            <div class="shower-rain icon">
+                <img src="/assets/shower-rain.gif" ></img>
+            </div>
+            <div class="heavy-rain icon">
+                <img src="/assets/shower-rain-1.gif" ></img>
+            </div>
+            <div class="rain icon">
+                <img src="/assets/rain.gif"></img>
+            </div>
+            <div class="thunderstorm icon">
+                <img src="/assets/thunderstorm-1.gif" ></img>
+            </div>
+            <div class="snow icon">
+                <img src="/assets/snow.gif" ></img>
+            </div>
+            <div class="light-snow icon">
+                <img src="/assets/light-snow.gif" ></img>
+            </div>
+            <div class="mist icon">
+                <img src="/assets/mist.gif" ></img>
+            </div>
+            <div class="drizzle icon">
+                <img src="/assets/drizzle.gif" ></img>
+            </div>
+            <div class="tornado icon">
+                <img src="/assets/tornado.gif" ></img>
+            </div>
+            <div class="smoke icon">
+                <img src="/assets/smoke.gif" ></img>
+            </div>
+            <div class="sand icon">
+                <img src="/assets/sand.gif" ></img>
+            </div>
+
+        </div> <!-- end .icons-wrapper -->
+    
+
+    </div> <!-- end .weather-box -->
+
+    <div class="search-bar">
+    <form>
+        <input type="text" id="city-search" placeholder="Search for a city" autofocus>
+        <button type="submit">go→
+        </button>
+      </form>
+      <span class="msg"></span>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="app.js"></script>
+    
+</body>
+</html>
