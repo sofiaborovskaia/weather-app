@@ -1,4 +1,5 @@
 window.addEventListener('load', () => {
+
     let long;
     let lat;
     let temperatureDescription = document.querySelector('.temperature-description');
@@ -6,10 +7,6 @@ window.addEventListener('load', () => {
     let locationTimezone = document.querySelector('.location-timezone');
     let temperatureSection = document.querySelector('.temperature');
     let temperatureSpan = document.querySelector('.temperature span');
-    
- 
- 
-
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
@@ -18,7 +15,6 @@ window.addEventListener('load', () => {
             
             const api = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=hourly,daily&appid=b07ce01cf98a75428f9f86fbce911aa4&units=metric`;
             const apiGeolocation = `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${long}&limit=1&appid=b07ce01cf98a75428f9f86fbce911aa4&units=metric`;
-
 
             // Geo Location API
             fetch(apiGeolocation)
@@ -42,7 +38,7 @@ window.addEventListener('load', () => {
 
                     
                     
-                // ICONS
+                    // ICONS
                     
                     let descName = description.replace(/\s+/g, '-');
                   
@@ -116,42 +112,40 @@ window.addEventListener('load', () => {
                     }
 
 
-                // Formula for temperature
-                let farenheit = (temp * 9 / 5) + 32; 
+                    // Formula for temperature
+                    let farenheit = (temp * 9 / 5) + 32; 
 
                 
-                // Set DOM elements from API
+                    // Set DOM elements from API
 
-                temperatureDegree.textContent = Math.floor(temp);
-                temperatureDescription.textContent = description;
-                // locationTimezone.textContent = timezone;
+                    temperatureDegree.textContent = Math.floor(temp);
+                    temperatureDescription.textContent = description;
 
-                // Change temperature to Celcius/Farenheit
+                    // Change temperature to Celcius/Farenheit
                     temperatureSection.addEventListener('click', () => {
                         if (temperatureSpan.textContent === "°C") {
-                        
                         temperatureSpan.textContent = "°F";
                         temperatureDegree.textContent = farenheit;
-                    } else {
+                        } else {
                         temperatureSpan.textContent = "°C";
                         temperatureDegree.textContent = Math.floor(temp);
-                    }
-                });
+                        }
+                    });
 
-            });
+                });
         });
     }
 });
 
-$(".trigger").click(function() {
-    $(".overlay").toggle();
-});
+    $(".trigger").click(function() {
+        $(".overlay").toggle();
+    });
 
 // SEARCH FORM - CHANGE CITY
 
 
 
-$(".search-bar form").submit(function (event) {
+$(".search__wrapper form").submit(function (event) {
     
     event.preventDefault();
     $('.icon').css('display', 'none');
@@ -165,14 +159,14 @@ $(".search-bar form").submit(function (event) {
     var city = $('#city-search').val();
     const apiCity = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=b07ce01cf98a75428f9f86fbce911aa4&units=metric`;
  
-    
+    const msg = document.querySelector('.msg');
 
     fetch(apiCity)
         .then(response => {
             return response.json();
         })
-        .then(data => {
 
+        .then(data => {
 
             const { description, icon } = data.weather[0];
             const { temp } = data.main;
@@ -186,25 +180,24 @@ $(".search-bar form").submit(function (event) {
             locationTimezone.innerText = cityName;
             temperatureDescription.innerText = description;
 
-                // Formula for temperature
-                let farenheit = (temp * 9 / 5) + 32; 
+            // Formula for temperature
+            let farenheit = (temp * 9 / 5) + 32; 
 
+            
+            // Set DOM elements from API
+            temperatureDegree.innerText = Math.floor(temp);
+
+            // Change temperature to Celcius/Farenheit
+            temperatureSection.addEventListener('click', () => {
+                if (temperatureSpan.textContent === "°C") {
                 
-                // Set DOM elements from API
-
-                temperatureDegree.innerText = Math.floor(temp);
-
-                // Change temperature to Celcius/Farenheit
-                    temperatureSection.addEventListener('click', () => {
-                        if (temperatureSpan.textContent === "°C") {
-                        
-                        temperatureSpan.textContent = "°F";
-                        temperatureDegree.textContent = farenheit;
-                    } else {
-                        temperatureSpan.textContent = "°C";
-                        temperatureDegree.textContent = Math.floor(temp);
-                    }
-                    });
+                temperatureSpan.textContent = "°F";
+                temperatureDegree.textContent = farenheit;
+            } else {
+                temperatureSpan.textContent = "°C";
+                temperatureDegree.textContent = Math.floor(temp);
+            }
+            });
                    
             // ICONS
             let descName = description.replace(/\s+/g, '-');
@@ -276,18 +269,14 @@ $(".search-bar form").submit(function (event) {
                 
                 default:
                     $('.icon').css('display', 'none');
+
             }
-  
+            msg.textContent = ""
         })
        
         .catch(() => {
-            const msg = document.querySelector('.msg');
             msg.textContent = "something went wrong. try again!";
         });
-    
-    
-        
-
           	
 });
 
